@@ -2,23 +2,21 @@
 # 
 # Create an image with enough dependencies to support a mounted-in matlab.
 #
-# Example usages--
-#
-# These examples worked on the author's dev machine.  To run them on your machine you must make some substitutions:
-#   - For "/usr/local/MATLAB/R2016a" substitute your Matlab location and version.  Try "ls -al `which matlab`".
-#   - For "/home/ben/Desktop/matlab-docker", substitute any folder where you want the container to write logs.
-#   - For "68:f7:28:f6:68:a6", substitute the mac address associated with your Matlab license.
+# These expect you to define some local information:
+# - `MATLAB_ROOT` is your matlab installation on the Docker host, perhaps `/usr/local/MATLAB/R2016a`.
+# - `MATLAB_LOGS` is optional path on the Docker host to receive Matlab logs, perhaps `~/matlab-logs`.
+# - `MATLAB_MAC_ADDRESS` is the MAC address associated with your own Matlab License, of the form `00:00:00:00:00:00`.
 #
 # Print Matlab command help:
-# docker run --rm -v /usr/local/MATLAB/R2016a:/usr/local/MATLAB/from-host -v /home/ben/Desktop/matlab-docker:/var/log/matlab --mac-address=68:f7:28:f6:68:a6 ninjaben/matlab-support
-# 
-# Launch Matlab and print version info:
-# docker run --rm -v /usr/local/MATLAB/R2016a:/usr/local/MATLAB/from-host -v /home/ben/Desktop/matlab-docker:/var/log/matlab --mac-address=68:f7:28:f6:68:a6 ninjaben/matlab-support -r "version,exit;"
+# docker run --rm -v "$MATLAB_ROOT":/usr/local/MATLAB/from-host -v "$MATLAB_LOGS":/var/log/matlab --mac-address="$MATLAB_MAC_ADDRESS" ninjaben/matlab-support
 #
-# Plot a figure and save it as a png we can view from outside the container:
-# sudo docker run --rm -v /usr/local/MATLAB/R2016a:/usr/local/MATLAB/from-host -v /home/ben/Desktop/matlab-docker:/var/log/matlab --mac-address=68:f7:28:f6:68:a6 ninjaben/matlab-support -r "plot(1:10);print('/var/log/matlab/figure.png', '-dpng');exit;"
-# 
-# Based on work by Michael Perry at Stanford.  Thanks!
+# Launch Matlab and print version info:
+# docker run --rm -v "$MATLAB_ROOT":/usr/local/MATLAB/from-host -v "$MATLAB_LOGS":/var/log/matlab --mac-address="$MATLAB_MAC_ADDRESS" ninjaben/matlab-support -r "version,exit;"
+#
+# Plot a figure and save it as a png in the logs folder:
+# docker run --rm -v "$MATLAB_ROOT":/usr/local/MATLAB/from-host -v "$MATLAB_LOGS":/var/log/matlab --mac-address="$MATLAB_MAC_ADDRESS" ninjaben/matlab-support -r "plot(1:10);print('/var/log/matlab/figure.png', '-dpng');exit;"
+#
+#Thanks to Michael Perry at Stanford for info, inspiration, starter code!
 #
 
 FROM ubuntu:14.04
