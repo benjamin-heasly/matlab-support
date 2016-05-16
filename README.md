@@ -9,7 +9,7 @@ To run Matlab inside the container, you have to provide three things at launch t
  - Spoof the container MAC address to match you own Matlab license file.
 
 # Example usages
-These expecte you to substitute some local information:
+These expect you to define some local information:
  - `MATLAB_ROOT` is your matlab installation on the Docker host, perhaps `/usr/local/MATLAB/R2016a`.
  - `MATLAB_LOGS` is optional path on the Docker host to receive Matlab logs, perhaps `~/matlab-logs`.
  - `MATLAB_MAC_ADDRESS` is the MAC address associated with your own Matlab License, of the form `00:00:00:00:00:00`.
