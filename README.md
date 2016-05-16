@@ -16,17 +16,17 @@ These expecte you to substitute some local information:
 
 ### Print Matlab command help:
 ```
-docker run --rm -v MATLAB_ROOT:/usr/local/MATLAB/from-host -v MATLAB_LOGS:/var/log/matlab --mac-address=MATLAB_MAC_ADDRESS ninjaben/matlab-support
+docker run --rm -v "$MATLAB_ROOT":/usr/local/MATLAB/from-host -v "$MATLAB_LOGS":/var/log/matlab --mac-address="$MATLAB_MAC_ADDRESS" ninjaben/matlab-support
 ```
 
 ### Launch Matlab and pring version info:
 ```
-docker run --rm -v MATLAB_ROOT:/usr/local/MATLAB/from-host -v MATLAB_LOGS:/var/log/matlab --mac-address=MATLAB_MAC_ADDRESS ninjaben/matlab-support -r "version,exit;"
+docker run --rm -v "$MATLAB_ROOT":/usr/local/MATLAB/from-host -v "$MATLAB_LOGS":/var/log/matlab --mac-address="$MATLAB_MAC_ADDRESS" ninjaben/matlab-support -r "version,exit;"
 ```
 
 ### Plot a figure and save it as a png in the logs folder:
 ```
-docker run --rm -v MATLAB_ROOT:/usr/local/MATLAB/from-host -v MATLAB_LOGS:/var/log/matlab --mac-address=MATLAB_MAC_ADDRESS ninjaben/matlab-support -r "plot(1:10);print('/var/log/matlab/figure.png', '-dpng');exit;"
+docker run --rm -v "$MATLAB_ROOT":/usr/local/MATLAB/from-host -v "$MATLAB_LOGS":/var/log/matlab --mac-address="$MATLAB_MAC_ADDRESS" ninjaben/matlab-support -r "plot(1:10);print('/var/log/matlab/figure.png', '-dpng');exit;"
 ```
 # Thanks
 Thanks to Michael Perry at Stanford for starter code!
