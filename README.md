@@ -29,4 +29,4 @@ docker run --rm -v "$MATLAB_ROOT":/usr/local/MATLAB/from-host -v "$MATLAB_LOGS":
 docker run --rm -v "$MATLAB_ROOT":/usr/local/MATLAB/from-host -v "$MATLAB_LOGS":/var/log/matlab --mac-address="$MATLAB_MAC_ADDRESS" ninjaben/matlab-support -r "plot(1:10);print('/var/log/matlab/figure.png', '-dpng');exit;"
 ```
 # Thanks
-Thanks to Michael Perry at Stanford for starter code!
+Thanks to Michael Perry at Stanford for info, inspiration, starter code!
